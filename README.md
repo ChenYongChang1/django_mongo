@@ -78,6 +78,7 @@ data = {
     "queryType": 1, // 1为模糊查询
     "page": 1,      // 需要传 不需要就不用传 与pageSize 要传都需要传
     "pageSize": 10,
+    "remove": [], // 不需要返回的字段
     "order": {  // 需要传 不需要就不用传 
         "orderBy": "xxx",
         "isDesc": -1 / 1
@@ -157,7 +158,7 @@ data = {
         "save_db": true / false, // true 为储存数据到指定数据库
         "jsonMessage": {
             'resource': '哪里的数据', // 不指定的话 可以通过url 来确定 如果没找到会拿不到
-            'url': '文章的链接'      // csdn/jianshu/juejin/cnblogs/  
+            'url': '文章的链接'      // csdn/jianshu/juejin/cnblogs/zhihu 
         }
     }
     返回

@@ -15,5 +15,9 @@ FROM_RESOURCE_DICT = {
     'cnblogs': {
         'refer': 'https://www.cnblogs.com/',
         'xpath': '//div[@id="mainContent"]'
+    },
+    'zhihu': {
+        'refer': 'https://www.zhihu.com/',
+        'xpath': '//article'
     }
 }
