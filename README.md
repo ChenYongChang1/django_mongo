@@ -75,7 +75,6 @@
 data = {
     "db": "xxx",
     "table": "xxx",
-    "queryType": 1, // 1为模糊查询
     "page": 1,      // 需要传 不需要就不用传 与pageSize 要传都需要传
     "pageSize": 10,
     "remove": [], // 不需要返回的字段
@@ -85,9 +84,22 @@ data = {
     },
     "jsonMessage": {
         'name': 'cyc', // 并且的关系 
-        'age': 18       
-    }
-}
+        'age': '/ddd/' // '/需要正则匹配的数据/'      
+    },
+    "jsonMessage": {
+        查或者关系
+        $or:[
+            {age:{$gte:30}},
+            {"name": '/ddd/'}
+        ]
+        查 并且关系
+        $and:[
+            {age:{$gte:30}},
+            {"name": '/ddd/'}
+        ]
+        查 in关系
+        age:{$in:[25,33]
+   }
 返回
 {
     "code": 200, 
@@ -182,10 +194,9 @@ data = {
 data = {
     "db": "xxx",
     "table": "xxx",
-    "queryType": 1, // 1为模糊查询
     "query": { // 查询 哪条数据
         'name': 'cyc', // 并且的关系 
-        'age': 18   
+        'age': '/正则需要匹配的内容/'   
     },
     "jsonMessage": { // 修改哪些 有就修改 没有添加
         'name': 'cyc', // 并且的关系 
@@ -212,10 +223,10 @@ data = {
 data = {
     "db": "xxx",
     "table": "xxx",
-    "queryType": 1, // 1为模糊查询
+    "isAll": true, // 默认是 true 删除全部匹配 false为删除匹配到的第一个 
     "jsonMessage": { 
         'name': 'cyc', // 并且的关系 
-        'age': 18       
+        'age': '/正则需要匹配的内容/'         
     }
 }
 返回

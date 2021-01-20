@@ -1,3 +1,4 @@
+from config.reg_config import reg
 from init.mongo_init import Mongdb
 from util.auth import check_auth
 from config.error_config import SUCCESS, NOT_ALLOW, BAD_PARAMS
@@ -65,12 +66,22 @@ class QueryObj(Mongdb):
             remove.append('password')
         remove_obj = dict(zip(remove, [0 for i in remove]))
         print(remove, remove_obj, 'remove_obj')
-        if 'queryType' in data and data.get('queryType') == 1:
-            try:
-                for i in data['jsonMessage']:
-                    data['jsonMessage'][i] = re.compile(data['jsonMessage'][i])
-            except Exception as e:
-                pass
+        # if 'queryType' in data and data.get('queryType') == 1:
+        try:
+            for i in data['jsonMessage']:
+                if '$' in i:
+                    print(data['jsonMessage'][i])
+                    for keyObj in data['jsonMessage'][i]:
+                        for key in keyObj:
+                            val = re.findall(reg, keyObj[key])
+                            if val and len(val):
+                                keyObj[key] = re.compile(val[0])
+                else:
+                    val = re.findall(reg, data['jsonMessage'][i])
+                    if val and len(val):
+                        data['jsonMessage'][i] = re.compile(val[0])
+        except Exception as e:
+            pass
         if 'page' in data and 'pageSize' in data:
             start = (data['page'] - 1) * data['pageSize']
             size = self.db[self.table].find(data.get('jsonMessage'), remove_obj).count()
