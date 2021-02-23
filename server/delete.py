@@ -50,7 +50,7 @@ class DeleObj(Mongdb):
         #                 data['jsonMessage'][i] = re.compile(data['jsonMessage'][i])
         #     except Exception:
         #         pass
-        if data.isAll:
+        if data.get('isAll'):
             rest = self.db[self.table].delete_many(data['jsonMessage'])
         else:
             rest = self.db[self.table].delete_one(data['jsonMessage'])
