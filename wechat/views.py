@@ -34,6 +34,9 @@ redis_db = RedisReadWrite()
 def get_app_id(request):
     return http_response(WECHART_CONFIG['appId'], SUCCESS)
 
+def getAuth(request):
+    print(request.GET)
+    return http_response(WECHART_CONFIG['appId'], SUCCESS)
 
 def get_open_id(request):
     code = request.GET.get('code')

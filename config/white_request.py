@@ -1,3 +1,4 @@
 PATH = [
-    '/user/login/'
+    '/user/login/',
+    '/wechat/'
 ]

@@ -16,7 +16,10 @@ class MyMiddle(MiddlewareMixin):
 
     def process_request(self, request):
         print('{}请求，参数:{} '.format(request.method, request))
-        if request.path not in PATH:
+        white = any(list((x in request.path) for x in PATH))
+        if white:
+            pass
+        elif request.path not in PATH:
             token = request.META.get('HTTP_ASSTOKEN')
             if token:
                 try:
