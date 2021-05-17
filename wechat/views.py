@@ -36,7 +36,7 @@ def get_app_id(request):
 
 def getAuth(request):
     print(request.GET)
-    return HttpResponse(request.GET.get('signature'))# http_response(WECHART_CONFIG['appId'], SUCCESS)
+    return HttpResponse(request.GET.get('echostr'))# http_response(WECHART_CONFIG['appId'], SUCCESS)
 
 def get_open_id(request):
     code = request.GET.get('code')
