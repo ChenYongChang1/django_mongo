@@ -60,11 +60,12 @@ class QueryObj(Mongdb):
             raise Exception(BAD_PARAMS)
         data['jsonMessage']['isdelete'] = {'$ne': True}
         # print(data.get('remove'), 'data')
-        remove = data.get('remove') if data.get('remove') and len(data.get('remove')) else []
+        pointer = data.get('pointer') or []
+        remove = data.get('remove') or []
         remove.append('_id')
         if self.table == 'user':
             remove.append('password')
-        remove_obj = dict(zip(remove, [0 for i in remove]))
+        remove_obj = dict(zip(remove + pointer, [0 for i in remove] + [1 for i in pointer]))
         print(remove, remove_obj, 'remove_obj')
         # if 'queryType' in data and data.get('queryType') == 1:
         try:
