@@ -29,6 +29,7 @@ def add_data(request):
 def add_count(request):
     pass
 
+
 # @checkMethodPOST
 # def addphoto(request):
 #     token = request.META.get('HTTP_ASSTOKEN')
@@ -72,9 +73,11 @@ def add_other_article(request):
         if data['jsonMessage'].get('resource') not in data.get('jsonMessage').get('url'):
             raise Exception(DONT_MATCH)
     data['token'] = token
-    content, title_html = add_other_resourse(data)
+    content, title_html, description_html, keywords_html = add_other_resourse(data)
     data['jsonMessage'] = {
         "title": title_html,
+        "description": description_html,
+        "keywords": keywords_html,
         "content": content,
         "from": data.get('jsonMessage').get('resource'),
         "from_url": data.get('jsonMessage').get('url'),

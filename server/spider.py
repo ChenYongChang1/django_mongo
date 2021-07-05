@@ -44,8 +44,18 @@ def get_acticle(data):
         code = 'utf-8'
     content_html = etree.HTML(r_article.text)
     try:
+        keywords_html = content_html.xpath('//meta[@name="keywords"]//@content')
+    except Exception as e:
+        keywords_html = []
+
+    try:
+        description_html = content_html.xpath('//meta[@name="description"]//@content')[0]
+    except Exception as e:
+        description_html = -1
+
+    try:
         title_html = content_html.xpath('//title//text()')[0]
     except Exception as e:
-        title_html = '未获取到标题'
+        title_html = -1
     data_html = tostring(content_html.xpath(row_resource.get('xpath'))[0], encoding=code).decode(code)
-    return data_html, title_html
+    return data_html, title_html, description_html, keywords_html
