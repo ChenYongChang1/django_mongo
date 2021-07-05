@@ -40,6 +40,8 @@ def get_acticle(data):
         raise Exception(HAVE_NO_RESOURCE)
     r_article = get_html(url, row_resource)
     code = r_article.apparent_encoding  # 获取url对应的编码格式
+    if 'Windows' in code:
+        code = 'utf-8'
     content_html = etree.HTML(r_article.text)
     try:
         title_html = content_html.xpath('//title//text()')[0]
